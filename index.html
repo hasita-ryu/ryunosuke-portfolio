@@ -1895,6 +1895,116 @@ body {
     #315f8c;
 }
 
+.like-gallery-detail {
+  width: min(1120px, calc(100vw - 48px));
+}
+
+.like-gallery-detail .detail-main-window {
+  min-height: min(76svh, 720px);
+}
+
+.like-gallery-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.like-gallery-stage {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.like-gallery-figure {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.like-gallery-image {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  height: min(52svh, 460px);
+  max-height: 460px;
+  object-fit: contain;
+  background: #050505;
+  border: 3px solid #f2f2f2;
+}
+
+.like-gallery-caption,
+.like-gallery-count {
+  margin: 0;
+  color: #fff;
+  font-family: "DotGothic16", monospace;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.like-gallery-info {
+  display: grid;
+  gap: 8px;
+  color: #fff;
+  font-family: "DotGothic16", monospace;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.like-gallery-info p {
+  margin: 0;
+}
+
+.like-gallery-nav {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 92px;
+  border: 3px solid #f2f2f2;
+  background: #050505;
+  color: #fff;
+  font-family: "DotGothic16", monospace;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.like-gallery-nav:hover,
+.like-gallery-nav:focus-visible {
+  background: #171717;
+  outline: none;
+}
+
+.like-gallery-prev span {
+  transform: rotate(180deg);
+}
+
+.like-gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 8px;
+}
+
+.like-gallery-thumb {
+  height: 70px;
+  padding: 3px;
+  border: 2px solid #8a8a8a;
+  background: #050505;
+  cursor: pointer;
+}
+
+.like-gallery-thumb.is-selected {
+  border-color: #f2f2f2;
+}
+
+.like-gallery-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (max-width: 820px) {
   .inventory-layout {
     grid-template-columns: 1fr;
@@ -1908,6 +2018,43 @@ body {
 
   .info-window {
     min-height: 240px;
+  }
+
+  .like-gallery-detail {
+    width: min(100%, calc(100vw - 20px));
+  }
+
+  .like-gallery-stage {
+    display: block;
+    position: relative;
+    padding-bottom: 44px;
+  }
+
+  .like-gallery-image {
+    height: min(44svh, 340px);
+  }
+
+  .like-gallery-nav {
+    position: absolute;
+    bottom: 0;
+    width: calc(50% - 4px);
+    height: 36px;
+  }
+
+  .like-gallery-prev {
+    left: 0;
+  }
+
+  .like-gallery-next {
+    right: 0;
+  }
+
+  .like-gallery-thumbs {
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+  }
+
+  .like-gallery-thumb {
+    height: 54px;
   }
 }
 
@@ -1928,6 +2075,18 @@ body {
   .item-code,
   .item-count {
     display: none;
+  }
+
+  #likeMenu .item-option {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  #likeMenu .item-count {
+    display: block;
+    justify-self: end;
+    padding-left: 8px;
+    font-size: .68em;
   }
 }
 
@@ -3578,7 +3737,6 @@ html.controller-mode {
 
           <div class="inventory-stage">
             <div class="inventory-window inventory-main-window">
-              <p class="window-title">きろく</p>
               <div id="workMenu" class="item-menu" role="listbox" aria-label="作品一覧">
                 <button class="item-option is-selected" data-work="0" type="button" role="option" aria-selected="true">
                   <span class="item-cursor">▶</span>
@@ -3640,34 +3798,28 @@ html.controller-mode {
 
           <div class="inventory-stage">
             <div class="inventory-window inventory-main-window">
-              <p class="window-title">もちもの</p>
               <div id="likeMenu" class="item-menu" role="listbox" aria-label="好きなもの一覧">
                 <button class="item-option is-selected" data-like="0" type="button" role="option" aria-selected="true">
                   <span class="item-cursor">▶</span>
-                  <span class="item-name">ドット絵</span>
-                  <span class="item-count">× 99</span>
+                  <span class="item-name">ものづくり</span>
+                  <span class="item-count">× 06</span>
                 </button>
                 <button class="item-option" data-like="1" type="button" role="option" aria-selected="false">
                   <span class="item-cursor">▶</span>
-                  <span class="item-name">レトロな雰囲気</span>
-                  <span class="item-count">× 99</span>
+                  <span class="item-name">自然・生き物</span>
+                  <span class="item-count">× 09</span>
                 </button>
                 <button class="item-option" data-like="2" type="button" role="option" aria-selected="false">
                   <span class="item-cursor">▶</span>
-                  <span class="item-name">蛇</span>
-                  <span class="item-count">× 01</span>
-                </button>
-                <button class="item-option" data-like="3" type="button" role="option" aria-selected="false">
-                  <span class="item-cursor">▶</span>
-                  <span class="item-name">苔テラリウム</span>
-                  <span class="item-count">× 01</span>
+                  <span class="item-name">世界観</span>
+                  <span class="item-count">× 09</span>
                 </button>
               </div>
             </div>
 
             <div id="likeActionWindow" class="inventory-window item-action-window" aria-hidden="true">
               <p class="window-title">コマンド</p>
-              <p id="likeActionTitle" class="action-target-name">ドット絵</p>
+              <p id="likeActionTitle" class="action-target-name">ものづくり</p>
               <button id="likeDetailsButton" class="command-option is-selected" type="button">
                 <span>▶</span> しらべる
               </button>
@@ -3753,16 +3905,29 @@ html.controller-mode {
 
   <!-- LIKES MODAL -->
   <div id="likeModalBackdrop" class="modal-backdrop layered-detail-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <article class="layered-detail">
+    <article class="layered-detail like-gallery-detail">
       <section class="dq-window detail-main-window">
         <p class="dq-window-label">もちもの</p>
         <h2 id="likeModalTitle" class="detail-title">すきなもの</h2>
-        <div class="detail-grid">
-          <div id="likeModalImage" class="modal-image like-detail-image"></div>
-          <div class="detail-text">
+        <div class="like-gallery-shell">
+          <div class="like-gallery-stage">
+            <button id="likeGalleryPrev" class="like-gallery-nav like-gallery-prev" type="button" aria-label="前の画像">
+              <span>▶</span>
+            </button>
+            <figure class="like-gallery-figure">
+              <img id="likeModalImage" class="like-gallery-image" src="" alt="" loading="eager">
+              <figcaption id="likeModalCaption" class="like-gallery-caption"></figcaption>
+            </figure>
+            <button id="likeGalleryNext" class="like-gallery-nav like-gallery-next" type="button" aria-label="次の画像">
+              <span>▶</span>
+            </button>
+          </div>
+          <div class="like-gallery-info">
+            <p id="likeGalleryCount" class="like-gallery-count">1 / 1</p>
             <p class="detail-sub-label">せつめい</p>
             <p id="likeModalDescription"></p>
           </div>
+          <div id="likeGalleryThumbs" class="like-gallery-thumbs" aria-label="画像一覧"></div>
         </div>
       </section>
 
@@ -3889,28 +4054,145 @@ html.controller-mode {
 
     const likes = [
       {
-        title: "ドット絵",
-        summary: "少ない色と小さなマスで、形や動きを表現するもの。",
-        description: "限られた情報の中で形が成立するところと、少しの違いで印象が大きく変わるところが好きです。",
-        className: "like-0"
+        title: "ものづくり",
+        summary: "手を動かして、形や遊びを少しずつ作っていくこと。",
+        description: "木とレジン、2Dゲーム、革小物など、素材や仕組みを試しながら形にしていく過程が好きです。完成品だけでなく、作っている途中に考え方が変わっていくところにも惹かれます。",
+        images: [
+          {
+            src: "assets/sukinamon/making/01_wood_resin_user.jpg",
+            alt: "木とレジンを組み合わせた制作物",
+            caption: "木材とレジンを使った制作。素材の境目や透明感を見ながら形にしていく。"
+          },
+          {
+            src: "assets/sukinamon/making/02_wood_resin_free.jpg",
+            alt: "木とレジンの参考イメージ",
+            caption: "木の表情とレジンの質感を合わせる発想の参考。"
+          },
+          {
+            src: "assets/sukinamon/making/03_2d_game_field.png",
+            alt: "2Dゲームのフィールド画面",
+            caption: "2Dゲームのフィールド。小さな画面の中に歩き回れる世界を作る。"
+          },
+          {
+            src: "assets/sukinamon/making/04_2d_game_character.png",
+            alt: "2Dゲームのキャラクター",
+            caption: "キャラクターを作り、動きや表情で世界観を伝える。"
+          },
+          {
+            src: "assets/sukinamon/making/05_leathercraft_user.png",
+            alt: "革製品の制作物",
+            caption: "革小物の制作。使う人の手元に残るものとして仕上げる。"
+          },
+          {
+            src: "assets/sukinamon/making/06_leathercraft_free.jpg",
+            alt: "革細工の参考イメージ",
+            caption: "革の質感や縫い目から、長く使えるものづくりを考える。"
+          }
+        ]
       },
       {
-        title: "レトロな雰囲気",
-        summary: "昔のゲームや機械にある、制限から生まれた見た目。",
-        description: "黒い画面、白い枠、少ない色、ドット文字など、必要なものだけで画面がつくられている雰囲気が好きです。",
-        className: "like-1"
+        title: "自然・生き物",
+        summary: "形や動きが一つずつ違う、生き物や自然を見ること。",
+        description: "蛇、イモリ、トカゲ、昆虫など、近くで見ると細かな模様や動きに発見があります。写真として残すことで、あとから形や特徴を観察し直せるところが好きです。",
+        images: [
+          {
+            src: "assets/sukinamon/living_things/01_newt.jpg",
+            alt: "イモリの写真",
+            caption: "イモリ。小さな体の形や色の違いを観察する。"
+          },
+          {
+            src: "assets/sukinamon/living_things/02_snake_hand.jpg",
+            alt: "手の上にいる蛇",
+            caption: "蛇を手に乗せたところ。体の曲がり方や重さが伝わる距離感。"
+          },
+          {
+            src: "assets/sukinamon/living_things/03_snake_ground.jpg",
+            alt: "地面を進む蛇",
+            caption: "地面を進む蛇。まっすぐではない移動の仕方が面白い。"
+          },
+          {
+            src: "assets/sukinamon/living_things/04_small_lizard.jpg",
+            alt: "小さなトカゲ",
+            caption: "小さなトカゲ。体の線や足の付き方を近くで見る。"
+          },
+          {
+            src: "assets/sukinamon/living_things/05_snake_closeup.jpg",
+            alt: "蛇の顔の近景",
+            caption: "蛇の顔。鱗や目の形に独特の強さがある。"
+          },
+          {
+            src: "assets/sukinamon/living_things/06_snake_habitat.jpg",
+            alt: "自然の中にいる蛇",
+            caption: "自然の中にいる蛇。背景と体色のなじみ方を見る。"
+          },
+          {
+            src: "assets/sukinamon/living_things/07_snake_water.jpg",
+            alt: "水辺の蛇",
+            caption: "水辺の蛇。場所が変わると動きの印象も変わる。"
+          },
+          {
+            src: "assets/sukinamon/living_things/08_butterfly.jpg",
+            alt: "蝶の写真",
+            caption: "蝶。羽の模様や止まり方に自然の細かさが出る。"
+          },
+          {
+            src: "assets/sukinamon/living_things/09_ladybug.jpg",
+            alt: "てんとう虫の写真",
+            caption: "てんとう虫。小さい中に強い色と形がある。"
+          }
+        ]
       },
       {
-        title: "蛇",
-        summary: "動きや形、鱗の模様に惹かれる生き物。",
-        description: "体の形や動き方が独特で、種類によって色や模様が大きく違うところが好きです。",
-        className: "like-2"
-      },
-      {
-        title: "苔テラリウム",
-        summary: "小さな容器の中につくられた、静かな自然。",
-        description: "限られた空間の中に風景ができているところと、少しずつ変化していくところが好きです。",
-        className: "like-3"
+        title: "世界観",
+        summary: "小さな物や画面から、別の空気を感じられるもの。",
+        description: "千羽鶴、レトロゲーム、観葉植物、苔テラリウムなど、そこにあるだけで空気が変わるものが好きです。見た目だけでなく、時間の積み重なりや手触りまで含めて世界観として見ています。",
+        images: [
+          {
+            src: "assets/sukinamon/worldview/01_senbazuru_closeup.jpg",
+            alt: "千羽鶴の近景",
+            caption: "千羽鶴。ひとつずつの積み重なりが大きな存在感になる。"
+          },
+          {
+            src: "assets/sukinamon/worldview/02_pixel_game_user.png",
+            alt: "自作のピクセルゲーム画面",
+            caption: "ピクセルゲームの画面。限られた表現で空気を作る。"
+          },
+          {
+            src: "assets/sukinamon/worldview/03_pixel_art_game_free.jpg",
+            alt: "ピクセルアートゲームの参考イメージ",
+            caption: "ドット絵の世界。省略された表現が想像の余白を作る。"
+          },
+          {
+            src: "assets/sukinamon/worldview/04_houseplant_01.jpg",
+            alt: "観葉植物の写真",
+            caption: "観葉植物。部屋の中に自然のリズムを置く。"
+          },
+          {
+            src: "assets/sukinamon/worldview/05_houseplant_02.jpg",
+            alt: "別の観葉植物の写真",
+            caption: "葉の形や影が、空間の印象を変える。"
+          },
+          {
+            src: "assets/sukinamon/worldview/06_houseplant_03.jpg",
+            alt: "観葉植物の近景",
+            caption: "近くで見る植物。形の繰り返しが心地よい。"
+          },
+          {
+            src: "assets/sukinamon/worldview/07_moss_terrarium_01.png",
+            alt: "苔テラリウム",
+            caption: "苔テラリウム。小さな容器の中に風景を作る。"
+          },
+          {
+            src: "assets/sukinamon/worldview/08_moss_terrarium_02.jpg",
+            alt: "苔テラリウムの参考写真",
+            caption: "苔の密度や高さで、小さな世界の見え方が変わる。"
+          },
+          {
+            src: "assets/sukinamon/worldview/09_retro_game.jpg",
+            alt: "レトロゲームの写真",
+            caption: "レトロゲーム。画面、音、操作感まで含めた世界観がある。"
+          }
+        ]
       }
     ];
 
@@ -4145,7 +4427,13 @@ html.controller-mode {
     const likeModalTitle = document.getElementById("likeModalTitle");
     const likeModalDescription = document.getElementById("likeModalDescription");
     const likeModalImage = document.getElementById("likeModalImage");
+    const likeModalCaption = document.getElementById("likeModalCaption");
+    const likeGalleryCount = document.getElementById("likeGalleryCount");
+    const likeGalleryThumbs = document.getElementById("likeGalleryThumbs");
+    const likeGalleryPrev = document.getElementById("likeGalleryPrev");
+    const likeGalleryNext = document.getElementById("likeGalleryNext");
     let likeActionChoice = 0;
+    let selectedLikeImageIndex = 0;
     const likeActionButtons = [likeDetailsButton, likeActionClose];
 
     function setLikeActionChoice(index, focus = true) {
@@ -4180,11 +4468,48 @@ html.controller-mode {
       if (focus) likeOptions[index].focus();
     }
 
+    function renderLikeGallery() {
+      const like = likes[selectedLikeIndex];
+      const images = like?.images || [];
+      const image = images[selectedLikeImageIndex];
+      if (!image) return;
+
+      likeModalImage.hidden = false;
+      likeModalImage.src = image.src;
+      likeModalImage.alt = image.alt || `${like.title} ${selectedLikeImageIndex + 1}`;
+      likeModalCaption.textContent = image.caption || "";
+      likeGalleryCount.textContent = `${selectedLikeImageIndex + 1} / ${images.length}`;
+      likeGalleryThumbs.innerHTML = "";
+
+      images.forEach((thumb, thumbIndex) => {
+        const button = document.createElement("button");
+        button.className = `like-gallery-thumb${thumbIndex === selectedLikeImageIndex ? " is-selected" : ""}`;
+        button.type = "button";
+        button.setAttribute("aria-label", `${like.title} ${thumbIndex + 1}枚目を表示`);
+        const img = document.createElement("img");
+        img.src = thumb.src;
+        img.alt = "";
+        img.loading = "lazy";
+        button.appendChild(img);
+        button.addEventListener("click", () => showLikeImage(thumbIndex));
+        likeGalleryThumbs.appendChild(button);
+      });
+    }
+
+    function showLikeImage(index) {
+      const images = likes[selectedLikeIndex]?.images || [];
+      if (!images.length) return;
+      selectedLikeImageIndex = (index + images.length) % images.length;
+      renderLikeGallery();
+    }
+
     function openLikeModal(index) {
       const like = likes[index];
+      selectedLikeIndex = index;
+      selectedLikeImageIndex = 0;
       likeModalTitle.textContent = like.title;
       likeModalDescription.textContent = like.description;
-      likeModalImage.className = `modal-image like-detail-image ${like.className}`;
+      renderLikeGallery();
       likeModalBackdrop.classList.add("is-open");
       likeModalBackdrop.setAttribute("aria-hidden", "false");
       document.body.classList.add("is-locked");
@@ -4197,6 +4522,14 @@ html.controller-mode {
       document.body.classList.remove("is-locked");
       window.setTimeout(() => likeOptions[selectedLikeIndex].focus(), 30);
     }
+
+    likeModalImage.addEventListener("error", () => {
+      likeModalImage.hidden = true;
+      likeModalCaption.textContent = "画像を読み込めませんでした。";
+    });
+
+    likeGalleryPrev.addEventListener("click", () => showLikeImage(selectedLikeImageIndex - 1));
+    likeGalleryNext.addEventListener("click", () => showLikeImage(selectedLikeImageIndex + 1));
 
     likeOptions.forEach((option, index) => {
       option.addEventListener("click", () => {
@@ -4248,11 +4581,9 @@ html.controller-mode {
     });
 
     document.addEventListener("keydown", (event) => {
+      if (event.defaultPrevented) return;
       if (event.key === "Escape" && modalBackdrop.classList.contains("is-open")) {
         closeModal();
-      }
-      if (event.key === "Escape" && likeModalBackdrop.classList.contains("is-open")) {
-        closeLikeModal();
       }
     });
   
@@ -4271,7 +4602,10 @@ html.controller-mode {
     if (typeof likeDetailsButton !== "undefined" && likeDetailsButton) {
       likeDetailsButton.addEventListener("click", (event) => {
         event.stopImmediatePropagation();
-        confirmFlash(likeDetailsButton, () => openLikeModal(selectedLikeIndex));
+        confirmFlash(likeDetailsButton, () => {
+          closeLikeAction(false);
+          openLikeModal(selectedLikeIndex);
+        });
       }, true);
     }
     const saveBackdrop = null;
@@ -4483,6 +4817,12 @@ html.controller-mode {
 
       // Layer 3: detailed likes window.
       if (likeDetailOpen) {
+        if (key === "ArrowLeft" || key === "ArrowRight") {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          showLikeImage(selectedLikeImageIndex + (key === "ArrowRight" ? 1 : -1));
+        }
+
         if (key === "ArrowUp" || key === "ArrowDown") {
           event.preventDefault();
           event.stopImmediatePropagation();
