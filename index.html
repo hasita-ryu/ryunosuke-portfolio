@@ -2005,6 +2005,83 @@ body {
   object-fit: cover;
 }
 
+.work-gallery-detail-panel {
+  display: grid;
+  gap: 14px;
+  min-height: 0;
+}
+
+.work-gallery-detail-panel[hidden] {
+  display: none;
+}
+
+.work-gallery-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #fff;
+}
+
+.work-gallery-summary p,
+.work-gallery-meta {
+  margin: 0;
+  color: #fff;
+  font-family: "k8x12S", "DotGothic16", monospace;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.work-gallery-meta {
+  display: grid;
+  gap: 8px;
+}
+
+.work-gallery-meta div {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.work-gallery-meta dt {
+  color: #a8a8a8;
+}
+
+.work-gallery-meta dd {
+  margin: 0;
+}
+
+.work-gallery-stage {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.work-gallery-figure {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  min-width: 0;
+}
+
+.work-gallery-page-viewer {
+  height: min(48svh, 430px);
+  overflow-y: auto;
+  border: 3px solid #f2f2f2;
+  background: #101010;
+}
+
+.work-gallery-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  object-fit: contain;
+  background: #fff;
+}
+
 @media (max-width: 820px) {
   .inventory-layout {
     grid-template-columns: 1fr;
@@ -2055,6 +2132,27 @@ body {
 
   .like-gallery-thumb {
     height: 54px;
+  }
+
+  .work-gallery-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .work-gallery-stage {
+    display: block;
+    position: relative;
+    padding-bottom: 44px;
+  }
+
+  .work-gallery-stage .like-gallery-nav {
+    position: absolute;
+    bottom: 0;
+    width: calc(50% - 4px);
+    height: 36px;
+  }
+
+  .work-gallery-page-viewer {
+    height: min(50svh, 420px);
   }
 }
 
@@ -3948,7 +4046,7 @@ html.controller-mode {
           <p id="modalMeta" class="modal-meta"></p>
         </div>
 
-        <div class="detail-grid">
+        <div id="workStandardDetail" class="detail-grid">
           <div id="modalImage" class="modal-image"></div>
 
           <div class="detail-text">
@@ -3961,6 +4059,42 @@ html.controller-mode {
             <h3>できあがったもの</h3>
             <p id="modalResult"></p>
           </div>
+        </div>
+
+        <div id="workGalleryDetail" class="work-gallery-detail-panel" hidden>
+          <div class="work-gallery-summary">
+            <p id="workGalleryDescription"></p>
+            <dl class="work-gallery-meta">
+              <div>
+                <dt>テーマ</dt>
+                <dd id="workGalleryTheme"></dd>
+              </div>
+              <div>
+                <dt>やったこと</dt>
+                <dd id="workGalleryRole"></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="work-gallery-stage">
+            <button id="workGalleryPrev" class="like-gallery-nav like-gallery-prev" type="button" aria-label="前のページ">
+              <span>▶</span>
+            </button>
+            <figure class="work-gallery-figure">
+              <div id="workGalleryPageViewer" class="work-gallery-page-viewer">
+                <img id="workGalleryImage" class="work-gallery-image" src="" alt="" loading="eager">
+              </div>
+              <figcaption id="workGalleryCaption" class="like-gallery-caption"></figcaption>
+            </figure>
+            <button id="workGalleryNext" class="like-gallery-nav like-gallery-next" type="button" aria-label="次のページ">
+              <span>▶</span>
+            </button>
+          </div>
+
+          <div class="like-gallery-info">
+            <p id="workGalleryCount" class="like-gallery-count">1 / 1</p>
+          </div>
+          <div id="workGalleryThumbs" class="like-gallery-thumbs" aria-label="ページ一覧"></div>
         </div>
       </section>
 
@@ -3987,15 +4121,59 @@ html.controller-mode {
         className: "visual-1"
       },
       {
-        title: "人物紹介パンフレット",
+        title: "デロイト紹介パンフレット",
         meta: "QUEST 02 / EDITORIAL / 2026",
         description:
-          "一人ひとりの経歴や価値観を、写真と文章を使って紹介するパンフレットです。",
+          "就職活動中の大学生に向けて、デロイト社員の入社の選択を通して、自分の就活の軸を考える時間をつくるパンフレットです。",
         reason:
-          "読む人が自分に近い考え方や働き方を持つ人物を見つけられるようにするためです。",
+          "ただ社員を紹介するのではなく、社員さんが大切にしていた考えや判断軸を読者のロールモデルとして置き、そこから自分の軸を内省できるものにするためです。",
         result:
-          "情報の強弱を整理し、重要な言葉や人物写真が自然に目に入る紙面を制作しました。",
-        className: "visual-2"
+          "テーマとデザインテーマを設計し、紙面構成、Figmaでのラフ案、Illustratorでの最終版制作まで行いました。",
+        className: "visual-2",
+        theme: "内省的他人軸",
+        role: "テーマ設計 / デザインテーマ設計 / 紙面構成 / Figmaラフ / Illustrator最終版",
+        images: [
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-01.png",
+            alt: "デロイト紹介パンフレット表紙",
+            caption: "表紙。他人軸と内省的というテーマを、言葉の配置と余白で表現した。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-02.png",
+            alt: "デロイト紹介パンフレット はじめに",
+            caption: "導入。読む人が就活の軸について考え始めるためのページ。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-03.png",
+            alt: "デロイト紹介パンフレット 上野凌さんページ",
+            caption: "社員紹介。入社を選んだ背景を、就活時の軸・惹かれた部分・現在の仕事へつなげて整理した。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-05.png",
+            alt: "デロイト紹介パンフレット 黒柳友貴さんページ",
+            caption: "社員紹介。人として受け入れてくれる環境という視点から、選択の軸を伝えるページ。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-06.png",
+            alt: "デロイト紹介パンフレット 山田陽太さんページ",
+            caption: "社員紹介。スキルを活かせることと、人間らしく働ける環境を軸に構成した。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-07.png",
+            alt: "デロイト紹介パンフレット 坂本祐輝さんページ",
+            caption: "社員紹介。何をするかだけでなく誰と働くかという判断軸を見せるページ。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-08.png",
+            alt: "デロイト紹介パンフレット あなたについて",
+            caption: "読者が自分の軸を探すための内省ページ。4人の選択を自分の判断材料に変える。"
+          },
+          {
+            src: "assets/works/deloitte/deloitte-pamphlet-09.png",
+            alt: "デロイト紹介パンフレット裏表紙",
+            caption: "裏表紙。表紙と対になる構成で、読後に自分の軸へ戻る流れを作った。"
+          }
+        ]
       },
       {
         title: "未来を考える展示企画",
@@ -4307,17 +4485,78 @@ html.controller-mode {
     const modalReason = document.getElementById("modalReason");
     const modalResult = document.getElementById("modalResult");
     const modalImage = document.getElementById("modalImage");
+    const workStandardDetail = document.getElementById("workStandardDetail");
+    const workGalleryDetail = document.getElementById("workGalleryDetail");
+    const workGalleryDescription = document.getElementById("workGalleryDescription");
+    const workGalleryTheme = document.getElementById("workGalleryTheme");
+    const workGalleryRole = document.getElementById("workGalleryRole");
+    const workGalleryPrev = document.getElementById("workGalleryPrev");
+    const workGalleryNext = document.getElementById("workGalleryNext");
+    const workGalleryPageViewer = document.getElementById("workGalleryPageViewer");
+    const workGalleryImage = document.getElementById("workGalleryImage");
+    const workGalleryCaption = document.getElementById("workGalleryCaption");
+    const workGalleryCount = document.getElementById("workGalleryCount");
+    const workGalleryThumbs = document.getElementById("workGalleryThumbs");
+    let selectedWorkImageIndex = 0;
+
+    function renderWorkGallery() {
+      const work = works[selectedWorkIndex];
+      const images = work?.images || [];
+      const image = images[selectedWorkImageIndex];
+      if (!image) return;
+
+      workGalleryImage.hidden = false;
+      workGalleryImage.src = image.src;
+      workGalleryImage.alt = image.alt || `${work.title} ${selectedWorkImageIndex + 1}`;
+      workGalleryCaption.textContent = image.caption || "";
+      workGalleryCount.textContent = `${selectedWorkImageIndex + 1} / ${images.length}`;
+      workGalleryThumbs.innerHTML = "";
+      workGalleryPageViewer.scrollTop = 0;
+
+      images.forEach((thumb, thumbIndex) => {
+        const button = document.createElement("button");
+        button.className = `like-gallery-thumb${thumbIndex === selectedWorkImageIndex ? " is-selected" : ""}`;
+        button.type = "button";
+        button.setAttribute("aria-label", `${work.title} ${thumbIndex + 1}ページ目を表示`);
+        const img = document.createElement("img");
+        img.src = thumb.src;
+        img.alt = "";
+        img.loading = "lazy";
+        button.appendChild(img);
+        button.addEventListener("click", () => showWorkImage(thumbIndex));
+        workGalleryThumbs.appendChild(button);
+      });
+    }
+
+    function showWorkImage(index) {
+      const images = works[selectedWorkIndex]?.images || [];
+      if (!images.length) return;
+      selectedWorkImageIndex = (index + images.length) % images.length;
+      renderWorkGallery();
+    }
 
     function openModal(index) {
       const work = works[index];
       if (!work) return;
 
+      selectedWorkIndex = index;
       modalTitle.textContent = work.title;
       modalMeta.textContent = work.meta;
       modalDescription.textContent = work.description;
       modalReason.textContent = work.reason;
       modalResult.textContent = work.result;
       modalImage.className = `modal-image ${work.className}`;
+
+      const hasGallery = Array.isArray(work.images) && work.images.length > 0;
+      workStandardDetail.hidden = hasGallery;
+      workGalleryDetail.hidden = !hasGallery;
+      if (hasGallery) {
+        selectedWorkImageIndex = 0;
+        workGalleryDescription.textContent = work.description;
+        workGalleryTheme.textContent = work.theme || "";
+        workGalleryRole.textContent = work.role || "";
+        renderWorkGallery();
+      }
 
       modalBackdrop.classList.add("is-open");
       modalBackdrop.setAttribute("aria-hidden", "false");
@@ -4334,6 +4573,14 @@ html.controller-mode {
         if (selected) selected.focus();
       }, 30);
     }
+
+    workGalleryImage.addEventListener("error", () => {
+      workGalleryImage.hidden = true;
+      workGalleryCaption.textContent = "画像を読み込めませんでした。";
+    });
+
+    workGalleryPrev.addEventListener("click", () => showWorkImage(selectedWorkImageIndex - 1));
+    workGalleryNext.addEventListener("click", () => showWorkImage(selectedWorkImageIndex + 1));
 
 
     let selectedWorkIndex = 0;
@@ -4596,7 +4843,10 @@ html.controller-mode {
     if (typeof workDetailsButton !== "undefined" && workDetailsButton) {
       workDetailsButton.addEventListener("click", (event) => {
         event.stopImmediatePropagation();
-        confirmFlash(workDetailsButton, () => openModal(selectedWorkIndex));
+        confirmFlash(workDetailsButton, () => {
+          closeWorkAction(false);
+          openModal(selectedWorkIndex);
+        });
       }, true);
     }
     if (typeof likeDetailsButton !== "undefined" && likeDetailsButton) {
@@ -4795,7 +5045,24 @@ html.controller-mode {
 
       // Layer 3: detailed work window.
       if (workDetailOpen) {
+        const workGalleryOpen = workGalleryDetail && !workGalleryDetail.hidden;
+        if (workGalleryOpen && (key === "ArrowLeft" || key === "ArrowRight")) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          showWorkImage(selectedWorkImageIndex + (key === "ArrowRight" ? 1 : -1));
+        }
+
+        if (workGalleryOpen && (key === "ArrowUp" || key === "ArrowDown")) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          workGalleryPageViewer.scrollBy({
+            top: key === "ArrowDown" ? 90 : -90,
+            behavior: "smooth"
+          });
+        }
+
         if (key === "ArrowUp" || key === "ArrowDown") {
+          if (workGalleryOpen) return;
           event.preventDefault();
           event.stopImmediatePropagation();
           modalClose.focus({ preventScroll: true });
