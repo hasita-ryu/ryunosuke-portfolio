@@ -2015,6 +2015,24 @@ body {
   display: none;
 }
 
+.work-empty-detail {
+  display: grid;
+  min-height: 470px;
+  place-items: center;
+}
+
+.work-empty-detail[hidden] {
+  display: none;
+}
+
+.work-empty-detail p {
+  margin: 0;
+  color: #fff;
+  font-family: "k8x12S", "DotGothic16", monospace;
+  font-size: clamp(24px, 4vw, 44px);
+  line-height: 1.5;
+}
+
 .work-gallery-summary {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
@@ -4061,6 +4079,10 @@ html.controller-mode {
           </div>
         </div>
 
+        <div id="workEmptyDetail" class="work-empty-detail" hidden>
+          <p>作成中、、、</p>
+        </div>
+
         <div id="workGalleryDetail" class="work-gallery-detail-panel" hidden>
           <div class="work-gallery-summary">
             <p id="workGalleryDescription"></p>
@@ -4486,6 +4508,7 @@ html.controller-mode {
     const modalResult = document.getElementById("modalResult");
     const modalImage = document.getElementById("modalImage");
     const workStandardDetail = document.getElementById("workStandardDetail");
+    const workEmptyDetail = document.getElementById("workEmptyDetail");
     const workGalleryDetail = document.getElementById("workGalleryDetail");
     const workGalleryDescription = document.getElementById("workGalleryDescription");
     const workGalleryTheme = document.getElementById("workGalleryTheme");
@@ -4548,7 +4571,8 @@ html.controller-mode {
       modalImage.className = `modal-image ${work.className}`;
 
       const hasGallery = Array.isArray(work.images) && work.images.length > 0;
-      workStandardDetail.hidden = hasGallery;
+      workStandardDetail.hidden = true;
+      workEmptyDetail.hidden = hasGallery;
       workGalleryDetail.hidden = !hasGallery;
       if (hasGallery) {
         selectedWorkImageIndex = 0;
